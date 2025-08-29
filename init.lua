@@ -30,6 +30,7 @@ require('lazy').setup({
   {'neovim/nvim-lspconfig'},
   {'hrsh7th/cmp-nvim-lsp'},
   {'hrsh7th/nvim-cmp'},
+  {'mfussenegger/nvim-lint'},
   {
     'nvim-telescope/telescope.nvim', branch = '0.1.x',
       dependencies = { 'nvim-lua/plenary.nvim' }
@@ -75,6 +76,13 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.keymap.set({'n', 'x'}, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
     vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
   end,
+})
+
+vim.lsp.inlay_hint.enable(true)
+
+vim.diagnostic.config({
+	-- virtual_lines = true
+	virtual_text = true,
 })
 
 require('mason').setup({})
